@@ -40,7 +40,8 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        	new GetSession().authorization(request, response);
+        	/* TODO output your page here. You may use following sample code. */
             RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
 
             request.setAttribute("data", user_data());
@@ -76,6 +77,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	new GetSession().authorization(request, response);
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");

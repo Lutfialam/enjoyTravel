@@ -39,6 +39,7 @@ public class DestinationAdd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		new GetSession().authorization(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/destination/create.jsp");
 
 		request.setAttribute("name", new GetSession().getName(request));

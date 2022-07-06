@@ -15,6 +15,7 @@ import database.Destination;
 import model.DestinationModel;
 import model.UserModel;
 import service.FileStorage;
+import service.GetSession;
 
 /**
  * Servlet implementation class DestinationDetail
@@ -39,6 +40,7 @@ public class DestinationDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		new GetSession().authorization(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/destination/edit.jsp");
 
         HttpSession session = request.getSession();

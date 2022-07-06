@@ -1,6 +1,7 @@
 package enjoyTravel.destination;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.DestinationModel;
+import model.UserModel;
 import service.GetSession;
 
 /**
@@ -30,9 +34,12 @@ public class Destination extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		new GetSession().authorization(request, response);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/destination/index.jsp");
 
-        request.setAttribute("data", new database.Destination().getData());
+		List<DestinationModel> destination_data = new database.Destination().getData();
+        request.setAttribute("data", destination_data);
         request.setAttribute("name", new GetSession().getName(request));
         rd.forward(request, response);
 	}

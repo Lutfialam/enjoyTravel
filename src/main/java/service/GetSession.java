@@ -2,6 +2,7 @@ package service;
 
 import model.UserModel;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class GetSession {
@@ -29,5 +30,18 @@ public class GetSession {
         }
 
         return id;
+    }
+    
+    public void authorization(HttpServletRequest request, HttpServletResponse response) {
+    	try {
+    		HttpSession session = request.getSession();
+            UserModel user = (UserModel) session.getAttribute("auth");
+            
+            if (user == null || user.getId() == null || user.getLevel().equals("admin") == false) {
+                response.sendRedirect("/");
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 }

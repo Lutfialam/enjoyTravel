@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import database.User;
 import model.UserModel;
+import service.GetSession;
 
 
 @WebServlet(name = "UserDetail", urlPatterns = { "/UserDetail" })
@@ -30,7 +31,8 @@ public class UserDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, String id)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/user_edit.jsp");
+    	new GetSession().authorization(request, response);
+    	RequestDispatcher rd = request.getRequestDispatcher("/user_edit.jsp");
 
         HttpSession session = request.getSession();
         UserModel user = (UserModel) session.getAttribute("auth");

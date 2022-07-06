@@ -32,7 +32,7 @@ public class UserAdd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		new GetSession().authorization(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/user_add.jsp");
 
         request.setAttribute("name", new GetSession().getName(request));

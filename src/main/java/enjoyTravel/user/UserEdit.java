@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import database.User;
 import model.UserModel;
+import service.GetSession;
 
 /**
  * Servlet implementation class UserEdit
@@ -32,6 +33,7 @@ public class UserEdit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		new GetSession().authorization(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/user_edit.jsp");
 
         HttpSession session = request.getSession();

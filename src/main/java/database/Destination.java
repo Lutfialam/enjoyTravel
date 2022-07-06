@@ -38,8 +38,8 @@ public class Destination extends DB {
                 temp.add(destinationModel.setDestination(snapshot));
             }
             destinations.addAll(temp);
+            countDownLatch.countDown();
         });
-        countDownLatch.countDown();
         waitListener();
         return destinations;
     }
